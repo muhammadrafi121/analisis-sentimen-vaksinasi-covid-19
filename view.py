@@ -74,10 +74,12 @@ class TableModel(QAbstractTableModel):
 
 class View(QMainWindow):
     def __init__(self, controller):
-        super().__init__()
-        
-        self.controller = controller        
+        app = QApplication([])
+        super().__init__()  
         self._setUI()
+        self.show()
+        self.controller = controller
+        app.exec()
         
     def _setUI(self):
         self.setObjectName("MainWindow")
@@ -258,9 +260,3 @@ class View(QMainWindow):
             "Warning", 
             "Invalid file path! Needs to be a .csv file"
             )
-    
-    def main(self):
-        app = QApplication([])
-        self.show()
-        
-        app.exec()

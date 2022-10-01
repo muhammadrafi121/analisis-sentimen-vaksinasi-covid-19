@@ -167,9 +167,5 @@ class Controller:
             
             self.view.showhistory(self.history)
     
-    def main(self):
-        self.view.main()
-    
 if __name__ == '__main__':
     controller = Controller()
-    controller.main()
