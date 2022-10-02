@@ -16,7 +16,7 @@ from view import View
 class Controller:
     def __init__(self):
         self.model = Model()
-        self.view = View(self)
+        self.view = View()
         
         self.history = []
         
@@ -92,10 +92,22 @@ class Controller:
             config_dict = {
                 "Epochs 3 & Batch Size 16": 1,
                 "Epochs 4 & Batch Size 16": 2,
-                "Epochs 3 & Batch Size 32": 3,
-                "Epochs 4 & Batch Size 32": 4,
-                "Epochs 3 & Batch Size 50": 5,
-                "Epochs 4 & Batch Size 50": 6
+                "Epochs 5 & Batch Size 16": 3,
+                "Epochs 6 & Batch Size 16": 4,
+                "Epochs 7 & Batch Size 16": 5,
+                "Epochs 8 & Batch Size 16": 6,
+                "Epochs 3 & Batch Size 32": 7,
+                "Epochs 4 & Batch Size 32": 8,
+                "Epochs 5 & Batch Size 32": 9,
+                "Epochs 6 & Batch Size 32": 10,
+                "Epochs 7 & Batch Size 32": 11,
+                "Epochs 8 & Batch Size 32": 12,
+                "Epochs 3 & Batch Size 50": 13,
+                "Epochs 4 & Batch Size 50": 14,
+                "Epochs 5 & Batch Size 50": 15,
+                "Epochs 6 & Batch Size 50": 16,
+                "Epochs 7 & Batch Size 50": 17,
+                "Epochs 8 & Batch Size 50": 18,
                 }
             
             self.config, self.xlnetmodel = self.model.load_xlnet_model(
@@ -167,5 +179,9 @@ class Controller:
             
             self.view.showhistory(self.history)
     
+    def main(self):
+        self.view.main(self)
+    
 if __name__ == '__main__':
     controller = Controller()
+    controller.main()

@@ -70,17 +70,10 @@ class CommentsDataset(Dataset):
         self.model = Model()
         self.text_data = []
         
-        # Check if file exists.
-        """
-        if not os.path.exists(path):
-            # Raise error if path is invalid.
-            raise ValueError('Invalid `path` variable! Needs to be a .csv file')
-        """  
         # Check max sequence length.
         max_sequence_len = use_tokenizer.max_len if max_sequence_len is None else max_sequence_len
         texts = []
         labels = []
-        print('Reading file...')
         df = pd.read_csv(path, on_bad_lines='error')
         df = df.reset_index()  # make sure indexes pair with number of rows
         for index, row in df.iterrows():
@@ -97,7 +90,6 @@ class CommentsDataset(Dataset):
         # Number of exmaples.
         self.n_examples = len(labels)
         # Use tokenizer on texts. This can take a while.
-        print('Using tokenizer on all texts. This can take a while...')
         self.inputs = use_tokenizer(
             texts, 
             add_special_tokens=True, 
@@ -108,11 +100,9 @@ class CommentsDataset(Dataset):
         )
         # Get maximum sequence length.
         self.sequence_len = self.inputs['input_ids'].shape[-1]
-        print('Texts padded or truncated to %d length!' % self.sequence_len)
         # Add labels.
         # self.inputs.update({'texts': texts})
         self.inputs.update({'labels':torch.tensor(labels)})
-        print('Finished!\n')
 
         return
 
